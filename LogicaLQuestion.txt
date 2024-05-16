@@ -288,15 +288,186 @@ const permute = function (prefix, str) {
 permute("", "ABC")
   console.log( arr);
 
-=====#################################################============================================================================================================================
-HS256 is a JWT default algorithms, which is a symmetric keyed hashing algorithm that uses one secret key.
-RS256 Algorithm a pair of public-private keys are used to encrypt and decrypt the data
-=====*************************************************============================================================================================================================
+==========================================================================================================================
 
-security algorithm names
-=====#################################################====================================================================
-* Cipher * Mac  * Rsa * KwyGenerator
-* Keystore 
-=====*************************************************================================================================================================
+
+
+
+ 
+ 
+
+
+ 
+ 
+
+ 
+ 
+
+
+ 
+ 
+
+ 
+ 
+
+
+ 
+
+//Remove duplicate characters using filter method.
+ 
+const arrayFilter = ['AA', 'BB', 'BB', 'AA','AAA','CC', 'DD','DD','DD'];
+ 
+ 
+
+//Remove duplicate characters using filter method.
+ 
+const arrayFilter = ['AA', 'BB', 'BB', 'AA','AAA','CC', 'DD','DD','DD'];
+ 
+let result=[]
+ 
+arrayFilter.filter((ele,index)=>{
+ 
+// console.log(ele)
+ 
+if(result.indexOf(ele) || index===0)
+ 
+{
+ 
+result.push(ele)
+ 
+}
+ 
+})
+ 
+console.log(result)
+ 
+ 
+
+ 
+ 
+
+How to get the Sum of Four Largest Number in an array using reduce method.
+ 
+const arr = [4, 5, -2, 3, 1, 2, 6, 6];
+ 
+
+// How to get the Sum of Four Largest Number in an array using reduce method.
+ 
+const arr = [4, 5, -2, 3, 1, 2, 6, 6];
+ 
+arr.sort((a,b)=>{return b-a})
+ 
+let newArr=arr.slice(0,4)
+ 
+let result=newArr.reduce((acc,curr)=>{
+ 
+return acc+=curr
+ 
+},0)
+ 
+console.log(result)
+ 
+
+How to get the biggest number from an Array using reduce method ?
+ 
+const findNum = [100, 200, 50, 40, 600];
+ 
+
+// How to get the biggest number from an Array using reduce method ?
+ 
+const findNum = [100, 200, 50, 40, 600];
+ 
+let result=findNum.reduce((acc,curr)=>{
+ 
+if(curr>acc){
+ 
+acc=curr
+ 
+}
+ 
+return acc
+ 
+},0)
+ 
+console.log(result)
+ 
+
+// how to add 0, 2, 4 in this array after 8
+ 
+var array = [1, 5, 6, 8, 11, 10, 20, 15];
+ 
+ 
+
+// how to add 0, 2, 4 in this array after 8
+ 
+var array = [1, 5, 6, 8, 11, 10, 20, 15];
+ 
+array.splice(4,0,0,2,4)
+ 
+console.log(array)
+ 
+ 
+
+const employee = {
+ 
+name: 'Alice',
+ 
+age: 30,
+ 
+position: 'Developer',
+ 
+};
+ 
+const colors = ['red', 'green', 'blue'];
+ 
+// Output: Alice,30,green,blue
+ 
+ 
+
+const employee = {
+ 
+name: 'Alice',
+ 
+age: 30,
+ 
+position: 'Developer',
+ 
+};
+ 
+const colors = ['red', 'green', 'blue'];
+ 
+let{name,age,position}=employee
+ 
+let[red,green,blue]=colors
+ 
+let result=[name,age,green,blue]
+ 
+console.log(result.toString())
+ 
+// Output: Alice,30,green,blue
+ 
+ 
+
+
+Consume RESTAPI and display the data using Fetch Method : https://rickandmortyapi.com/api/character
+ 
+Add a Delete Button to delete a Particular Character.
+ 
+JWT can we used it only at login time
+what algo we generally use at JWT default one
+find({age:30})
+quotes or not
+
+
+
+
+
+
+
+
+
+
+
+
 
 
