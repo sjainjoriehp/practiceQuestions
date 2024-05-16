@@ -1,0 +1,30 @@
+driver.manage().window().maximize(); || minimize(); || fullscreen()
+
+driver.manage().window().getsize()
+
+
+for executing any script inside a code
+================================================================== 
+driver.executeScript("")
+
+
+for performing some actions
+===========================================
+driver.actions().move({origin:ele}).pause(20000).press().pause(2000).perform()
+
+ 
+for performing actions like ( Ctrl + a)
+================================================================
+ driver().actions().keyDown(Key.CONTROL).sendKeys('a').perform()
+
+
+Switch Between handlers
+===================================
+const indow=await driver.getWindowHandle();
+await  driver.switchTo().newWindow('window')
+await driver.get("google.com")
+await driver.switchTO().window(indow)
+
+let tab=await driver.getWIndowHandler()
+
+

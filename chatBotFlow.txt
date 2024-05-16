@@ -1,0 +1,22 @@
+NewPatient
+=========================================
+1. Name
+2. DOB
+3. Email
+4. Gender
+5. Address
+6. Mobile
+7. Insurance (Yes)
+8. Name Insurance
+9. Member ID
+10. preferred HCP (Yes) 
+11. preferred HCP name
+12.Provider name
+13. DOA
+14. Table data
+15. Confirmation for booking
+
+
+Existing Patient(here we will not show ANyTable details)
+===========================================
+1 2 3 10

@@ -1,0 +1,302 @@
+// --------------Infinite curryning------------
+const CurSum = (a) => {
+  return function (b) {
+    if (b) return CurSum(a + b);
+    return a;
+  }
+}
+console.log(CurSum(1)(2)(2)());
+//
+const StArr = [1, 9, 2, 6, 4, 3];
+for (let i = 0; i <= StArr.length - 1; i++) {
+  for (let j = 0; j <= StArr.length - 1; j++) {
+    if (StArr[i] < StArr[j]) {
+      temp = StArr[i];
+      StArr[i] = StArr[j];
+      StArr[j] = temp;
+    }
+  }
+}
+console.log(`Array sorted is : ${StArr}`);
+// --------Binary search algorithm----------------------
+function BSFun(ar, target) {
+  Lindex = 0; Rindex = ar.length - 1;
+  while (Lindex <= Rindex) {
+    let midIndx = Math.floor((Lindex + Rindex) / 2);
+    if (ar[midIndx] === target) return true;
+    else if (ar[midIndx] < target)
+      Lindex = midIndx + 1;
+    else
+      Rindex = midIndx - 1;
+  }
+  return false;
+}
+const ar = [1, 2, 4, 6, 9, 10];
+console.log(BSFun(ar, 10));
+ 
+// ---------------binary search with recursion function-----------------------
+function RecursionBSF(arr, target, left, right) {
+  if (left > right) { return false; }
+  mid = Math.floor((left + right) / 2);
+  if (arr[mid] === target) { return true; }
+  else if (arr[mid] > target) {
+    return RecursionBSF(arr, target, left, mid - 1);
+  } else {
+    return RecursionBSF(arr, target, mid + 1, right);
+  }
+  return false;
+}
+const arr = [1, 2, 4, 6, 9, 10], target = 10, left = 0, right = arr.length - 1;
+console.log(RecursionBSF(arr, target, left, right));
+ 
+// ------------- Print All Numbers Divisible by 3 and 5 of a Given Number-------------------
+const DivisionBy3And5 = (n) => {
+  let Arr = [], count = 0;
+  for (let i = 0; i <= n; i++) {
+    if (i % 3 === 0 && i % 5 === 0) {
+      Arr[count] = i;
+      count++;
+    }
+  }
+  return Arr;
+}
+console.log(DivisionBy3And5(50));
+ 
+// -----------Finding union of  two array -------------
+const UnionArFun = (ar1, ar2) => {
+  const obj = {}, result = [];
+  // let arr =[...ar1, ...ar2];
+  // return arr;
+  for (let i = 0; i <= ar1.length - 1; i++) {
+    obj[ar1[i]] = true;
+  }
+  for (let j = 0; j <= ar2.length - 1; j++) {
+    obj[ar2[j]] = true;
+  }
+  for (x in obj) {
+    result.push(x);
+  }
+  return result;
+}
+const ar1 = [1, 2, 4, 5, 6, 7], ar2 = [3, 4, 7, 8, 9, 10];
+console.log(UnionArFun(ar1, ar2));
+ 
+// --------find a factorial of given num with recursion----------
+const FactRe = (num) => {
+  if (num <= 0) return 1;
+  return num * FactRe(num - 1);
+}
+let num = 2;
+console.log(`Factorial of ${num} is : ${FactRe(num)}`);
+ 
+// -----------convert  decimal to binary -------------
+function convertDecimalToBinary(Dnum) {
+  if (Dnum === 0) { return "0"; }
+  else {
+    return convertDecimalToBinary(
+      Math.floor(Dnum / 2)) + (Dnum % 2);
+  }
+}
+let Dnum = 6;
+let response = convertDecimalToBinary(Dnum);
+console.log(response);
+ 
+// function ConvertDecimalToBinary1(decimalNumber) {
+//   if (decimalNumber === 0) {
+//       return "0";
+//   } else {
+//       return ConvertDecimalToBinary1(
+//           Math.floor(decimalNumber / 2)) + (decimalNumber % 2);
+ 
+//   }
+// }
+ 
+// const num1 = 2;
+// const result = ConvertDecimalToBinary1(num1);
+// console.log(result);
+ 
+ 
+const Ars = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+let count = 0; ParArr = [];
+for (let i = 0; i <= Ars.length - 1; i++) {
+  for (let j = i + 1; j <= Ars.length - 1; j++) {
+    if (Ars[i] + Ars[j] === 100) {
+      ParArr[count] = [Ars[i], Ars[j]];
+    }
+  }
+  count++;
+}
+console.log(ParArr);
+ 
+// find sqare root values
+const ArrN = [2, 4, 16, 15, 9, 25, 10];
+const newArp = [];
+for (let i = 0; i <= ArrN.length - 1; i++) {
+  var b = (ArrN[i] ** 0.5) ** 2;
+  if (b % 1 === 0) {
+    newArp.push(b);
+  }
+}
+console.log(newArp);
+ 
+ 
+ 
+// missing number in an array
+ 
+function MissingNum (Arr) {
+  for (let i = 0; i <= Arr.length-1; i++) {
+    for (let j = 0; j <= Arr.length-1; j++) {
+      if (Arr[i] <= Arr[j]) {
+        temp = Arr[i];
+        Arr[i] = Arr[j];
+        Arr[j] = temp;
+      }
+    }
+  }
+  let len = Arr[Arr.length-1];
+  let missingEles = [], flag = 0;
+  for (k = 1; k <= len; k++) {
+    if (Arr.includes(k)===false) {
+       missingEles[flag] =k;
+       flag++;
+    }
+  }
+  return missingEles;
+  }
+  let Arr1 = [3,4,9,7,2];
+  console.log(MissingNum(Arr1));
+ 
+ 
+ 
+ 
+  const FSFun = (n) =>{
+let num1 = 0 , num2 = 1,nextNum;
+for(let i=1; i<=10; i++) {
+console.log(num1);  
+nextNum = num1+num2;
+num1=num2;
+num2 = nextNum;
+}
+return 0;
+  }
+  FSFun(n=10);
+ 
+ 
+ 
+ 
+ 
+//  1
+//  2  3
+//  4  5  6
+//  7  8  9  10
+//  11  12  13  14  15
+//  16  17  18  19  20  21  expected output
+  let nums= 6;  let str=''; count=1;
+  for(let i=1; i<=nums; i++){
+     for(let j=1; j<=i; j++) {
+     str += ` ${count} `;
+     count++;
+     }
+     str += '\n';
+    }
+    console.log(str);
+ 
+ 
+// -----------------
+var str1 ="zzzzeewttttaaq";
+let obj ={};
+let OutputStr ='';
+// ttzzzeemmnna
+let Arr = []; let count1 =0;
+for(let val of str1) {
+    Arr[count1] = val;
+    count1++;
+}
+// console.log(Arr);
+for(let i =0; i<=Arr.length-1; i++) {
+    if(obj[Arr[i]]) {
+        obj[Arr[i]] = obj[Arr[i]]+1;
+    }
+    else {
+        obj[Arr[i]] =1;
+    }
+}
+console.log(obj);
+let newObj = Object.keys(obj).sort().reduce((temp_obj, key) => {
+         temp_obj[key] = obj[key];
+         return temp_obj;
+      }, {});
+console.log(newObj);
+ 
+let ArrObj = Object.entries(newObj);
+// console.log(ArrObj);
+for(let i=0; i<=ArrObj.length; i++) {
+ for(let j=i+1; j<=ArrObj.length; j++) {
+     if(ArrObj[j] && (ArrObj[i][1]<ArrObj[j][1] || ArrObj[i][0]>ArrObj[j][0])  ) {
+         let temp = ArrObj[i];
+         ArrObj[i] = ArrObj[j];
+         ArrObj[j] = temp;
+     }
+}
+}
+ 
+for(let i =0; i<=ArrObj.length-1; i++) {
+    for(let j=0; j<ArrObj[i][1]; j++) {
+        OutputStr +=  ArrObj[i][0];
+    }
+}
+console.log(str1);
+console.log(OutputStr);
+ 
+ 
+ 
+ 
+// sort Arr element by strings length
+let StrArr =['abc','xyzk','mnopqr','sa'];
+for(let i=0; i<= StrArr.length-1; i++) {
+    for(let j=i+1; j<=StrArr.length-1; j++) {
+        if(StrArr[i].length < StrArr[j].length) {
+            let temp = StrArr[i];
+            StrArr[i] = StrArr[j];
+            StrArr[j] = temp;
+        }
+    }
+}
+console.log(StrArr);
+ 
+ 
+ 
+ 
+ 
+// Permutation of combination
+let arr=[]
+
+const permute = function (prefix, str) {
+  ;    var n = str.length
+      if (n == 0) {
+        //   console.log(prefix + "");
+        arr.push(prefix + "")
+      }
+      if (n != 0) {
+          for (let i = 0; i < n; i++) {
+              permute(prefix + str.charAt(i),
+                  str.substring(i + 1, n) + str.substring(0, i))
+          }
+      }
+  }
+ 
+permute("", "ABC")
+  console.log( arr);
+
+=====#################################################============================================================================================================================
+HS256 is a JWT default algorithms, which is a symmetric keyed hashing algorithm that uses one secret key.
+RS256 Algorithm a pair of public-private keys are used to encrypt and decrypt the data
+=====*************************************************============================================================================================================================
+
+security algorithm names
+=====#################################################====================================================================
+* Cipher * Mac  * Rsa * KwyGenerator
+* Keystore 
+=====*************************************************================================================================================================
+
+
