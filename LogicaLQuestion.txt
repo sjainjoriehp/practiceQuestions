@@ -370,10 +370,18 @@ console.log(result.toString())
  
 ========================================================================================================================== 
 
-Consume RESTAPI and display the data using Fetch Method : https://rickandmortyapi.com/api/character
- 
-Add a Delete Button to delete a Particular Character.
- 
+
+
+
+
+
+
+
+
+
+
+
+
 JWT can we used it only at login time
 what algo we generally use at JWT default one 
 find({age:30})

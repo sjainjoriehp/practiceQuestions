@@ -1,0 +1,135 @@
+=========================================================
+DrawBacks
+1.Promises :  if any of the logic fails in an array then entire logic fails inpromises.
+2. callback : readablity is difficult and also time consuming to make any changes.
+3 async/await : code can be see as a synchronous by syntex and easy to read and change
+4. slice and splice
+5. redux
+6. lifecycle of a react app
+7. div and span
+8. debounce and throttle
+
+
+=====Debouncing and throttling===========================================================================================
+let save=()=>{
+        console.log("calling API")
+  }
+
+   function debounce(func,timer=1000){
+      let time;
+      return(...args)=>{
+        clearTimeout(time)
+        time=setTimeout(()=>{
+         func.apply(this,args)
+        },timer)
+      }
+   }
+
+    function throttle(func,timer=2000){
+            let prev=0;
+            return((...args)=>{
+              let now=new Date().getTime()
+              if(now-prev>timer){
+                prev=now;
+                return func(...args)
+              }
+
+            })
+    }
+
+   
+     let deFunc=debounce(()=>{save()})
+   let deFunc=throttle(()=>{save()})
+
+====================================================================================================================================
+Consume RESTAPI and display the data using Fetch Method : https://rickandmortyapi.com/api/character
+ Add a Delete Button to delete a Particular Character.
+ -------------------------------------------------------------------------------------------------------
+import { Prev } from 'react-bootstrap/esm/PageItem';
+import './App.css';
+import { createContext, useCallback, useContext, useEffect, useMemo, useReducer, useRef, useState} from 'react';
+import { debounce } from 'chart.js/helpers';
+
+
+
+
+
+
+
+function App() {
+
+  
+  // let save=()=>{
+  //       console.log("calling API")
+  // }
+
+  //  function debounce(func,timer=1000){
+  //     let time;
+  //     return(...args)=>{
+  //       clearTimeout(time)
+  //       time=setTimeout(()=>{
+  //        func.apply(this,args)
+  //       },timer)
+  //     }
+  //  }
+
+  //   function throttle(func,timer=2000){
+  //           let prev=0;
+  //           return((...args)=>{
+  //             let now=new Date().getTime()
+  //             if(now-prev>timer){
+  //               prev=now;
+  //               return func(...args)
+  //             }
+
+  //           })
+  //   }
+
+   
+  //    let deFunc=debounce(()=>{save()})
+  //  let deFunc=throttle(()=>{save()})
+ //https://rickandmortyapi.com/api/character
+
+    let [val,setval]=useState([])
+    
+    useEffect(()=>{
+       fetch('https://rickandmortyapi.com/api/character').then((e)=>{
+       return e.json()
+       }).then((data)=>{
+         console.log(data.results)
+        setval(data.results)})
+
+     },[])
+
+
+     function remove(index){
+        console.log("val", val)
+       let arr=[...val]
+       console.log("arr",arr)
+          arr.splice(index,1)
+          console.log(arr)
+          
+          setval(arr)
+     }
+
+
+  return (
+    <div className="App">
+        {
+         val?.map((el,index) => (
+          <>
+          <div>
+           <img src={el.image} name="image"/>  
+           <button onClick={()=>remove(index)}>Remove</button>
+          </div>        
+        </>
+         ))
+      } 
+
+    </div>
+  );
+}
+
+
+export default App
+===========================================================================================================================================
