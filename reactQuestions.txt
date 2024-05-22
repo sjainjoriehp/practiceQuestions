@@ -132,4 +132,40 @@ function App() {
 
 
 export default App
-===========================================================================================================================================
+
+=============((Custom Hook))==============================================================================================================================
+App.js
+-----------
+export default function App(){ 
+ let {count,Incr}=useCouter(0)
+
+
+
+  return (
+    <div className="App">
+      <h1>Hello {count}</h1>
+      <button onClick={Incr}>+</button>
+    </div>
+  );
+}
+
+
+export default App
+
+UseCounter.js
+----------------------
+export default function useCouter(initial,component){
+  
+       let [count,setCount]=useState(initial)
+    
+        let Incr=()=>{
+            setCount(count+1)
+        }
+
+        return {count,Incr}
+
+}
+
+===========================================================================================================================================================
+
+
