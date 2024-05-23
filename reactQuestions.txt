@@ -166,6 +166,46 @@ export default function useCouter(initial,component){
 
 }
 
-===========================================================================================================================================================
+=====================useMemo, useCallback======================================================================================================================================
+App.js
+-----------------
+function App() {
+  
+  let[count,setcount]=useState(0)
+   
+  let fun=useCallback(()=>{
+    console.log("let's have fun")
+},[])
 
+
+  return (
+    <div className="App">
+      <h1>Hello {count}</h1>
+      <button onClick={()=>{setcount(count+1)}}>+</button>
+      <button onClick={()=>{setcount(count-1)}}>-</button>
+    <Child fun={fun}/>
+   
+    </div>
+  );
+}
+
+export default App;
+
+child.js
+-------------
+ function Child({fun}){
+    
+      console.log("M child hu")
+
+    return(
+       <>
+       <h2>M Child hu </h2>
+       
+      
+       </>
+    )
+}
+
+export default memo(Child)
+======================================================================================================================
 
