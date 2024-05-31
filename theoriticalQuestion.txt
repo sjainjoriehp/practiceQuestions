@@ -9,3 +9,13 @@ security algorithm names
 * Cipher * Mac  * Rsa * KwyGenerator
 * Keystore 
 =====*************************************************================================================================================================
+
+Ways to improvise Backend API performance
+-------------------------------------------------------
+1. caching
+2. pagination
+3.  Using indexing in Database
+4. Compress payloads
+5. limit Payloads
+6. Implementing rate limit and API keys for API's
+=====*************************************************================================================================================================
