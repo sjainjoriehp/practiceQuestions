@@ -228,3 +228,105 @@ db.people.aggregate([{$match:{"payments.name":{$in:["restaurant"]}}},{$group:{_i
 db.people.aggregate([{$group:{_id:{fName:"$firstName",lName:"$lastName"},balance:{$sum:"$wealth.bankAccounts.balance"}}},{$sort:{balance:-1}},{$project:{fName:1,lName:1,balance:1}}])
 
 //aggregate05: Count the number of restaurant payments, the total amount spent, and the average amount per payment by country.
+db.people.aggregate([
+  { $unwind: "$payments" },
+  { $match: { "payments.name" : "restaurant" }},
+  { $group: { 
+   _id: "$address.country", 
+   totalVisits: { $sum: 1 },
+   totalAmount: { $sum: "$payments.amount" },
+   avgAmount: { $avg: "$payments.amount"} }}
+ ]).pretty()
+
+
+//  aggregate06: There is a country where the average payment at a restaurant is the highest and a country where the average payment at a restaurant is the lowest. How many times more people in the first country spend than people in the second?
+db.people.aggregate([
+  { $unwind: "$payments" },
+  { $match: { "payments.name" : "restaurant" }},
+  { $group: { 
+   _id: "$address.country", 
+   avgAmount: { $avg: "$payments.amount"} } },
+  { $group: { _id: null,
+             "minAmount" : {"$min" : "$avgAmount" },
+             "maxAmount" : {"$max" : "$avgAmount" } } },
+  { "$addFields" : { "diff" : { "$divide" : [ "$maxAmount", "$minAmount" ] } } }
+ ]).pretty()
+
+ 
+//aggregate07: Write a query to find all people with one or more transactions worth less than 
+db.people.find( 
+{ "payments.amount": {$lt: 5}}, 
+{ firstName: 1, 
+    lastName: 1, 
+    payments: {$elemMatch: {amount: { $lt: 5 } } } }
+).pretty()
+
+//aggregate08: Write a query to calculate the total value that a person has paid by each category.
+db.people.aggregate([
+    {$group:{_id:"firstName"} },
+    {$group:{_id:"payments.category",tS:{$sum:"$payments.amount"}}},
+    {$project:{tS:1}}
+  ])
+
+  //aggregate09: Count the number of people in each country by age groups as follows:
+  //aggregate10: Count the number of people in each country by age groups as follows: Calculate the percentage of the country's population in
+
+
+  //CRUD list
+--------------------------
+//CRUD- Practice01: Count all the people named Pauline Fournier.
+db.people.find({firstName:"Pauline",lastName:"Fournier"})
+
+//CRUD- Practice02: Count all people whose name is Pauline Fournier and who were born before January 1, 1970.
+db.people.find({"firstName": "Pauline", "lastName": "Fournier", "birthDate": {$lt: ISODate("1970-01-01")}})
+
+//CRUD- Practice03: Count all people with names: Lucas Dubois, Camille Dubois
+db.people.find({$or:[{firstName:"Pauline",lastName:"Fournier"},{firstName:"Camille",lastName:"Dubois"}]})
+
+//CRUD- Practice04: Count all the people who have no credits.
+db.people.find({"wealth.credits": {$size: 0}}).count()
+
+//CRUD- Practice05: Count everyone who spent exactly $12.99 on the cinema.
+db.people.find({"payments" : 
+    { $elemMatch: { "name" : "cinema", "amount" : 12.99 } } }).count()
+
+//CRUD- Practice06: Count all the people whose first payment was $12.99 for the cinema.
+db.people.find({"payments.0.name" : "cinema", "payments.0.amount" : 12.99}).count()
+
+//CRUD- Practice07: Count all the people who have never been to the cinema (no cinema payments yet).
+db.people.find({"payments": {$not: {$elemMatch : {"name":"cinema"}}}} ).count()
+
+//CRUD- Practice08: Count all the female who spent more than $100 on shoes and more than $50 on pants in one bill.
+db.people.find({$and: [ 
+{"sex": "female"}, 
+{"payments": {$elemMatch: {"name": "shoes", "amount": {$gt:100}}}}, 
+{"payments": {$elemMatch: {"name": "pants", "amount": {$gt:50}}}} 
+]}).count()
+
+//CRUD- Practice09: Count all the people from Warsaw, Poland who have been to the cinema but never to the disco.
+db.people.find({$and: [ 
+{"address.city": "Warsaw"},
+{"address.country": "Poland"}, 
+{"payments": {$elemMatch: {"name": "cinema"}}}, 
+{"payments": {$not: {$elemMatch: {"name": "disco"}}}} 
+]}).count()
+
+
+// CRUD- Practice10: Count all the female from Paris and male from Cracow that have all of the following properties: flat, house, land
+db.people.find({$and: [ 
+ {$or: [ {$and: [ {"sex" : "female"}, {"address.city": "Paris"}  ] }, 
+  {$and: [ {"sex" : "male"}, {"address.city": "Cracow"} ] } ] },
+ {"wealth.realEstates": {$elemMatch: {"type": "flat"}}}, 
+ {"wealth.realEstates": {$elemMatch: {"type": "house"}}}, 
+ {"wealth.realEstates": {$elemMatch: {"type": "land"}}}, 
+ {"wealth.realEstates": {$elemMatch: {"worth": {$gt: 2000000}}}}, 
+ {"wealth.realEstates": {$not: {$elemMatch: {"worth": {$lt: 500000}}}}} 
+]}).count()
+
+
+// CRUD- Practice11: Count all the people who have exactly 10 transactions.
+
+// CRUD- Practice12: Finds all people with firstName = 'Thomas' and returns only the following fields: _id, firstName and lastName.
+// CRUD- Practice13: Find everyone who has one or more transactions worth less than $5.
+// CRUD- Practice14: Add an element to the payments of people who are in France with the following structure:
+// CRUD- Practice15: Delete all of everyone's market fields
