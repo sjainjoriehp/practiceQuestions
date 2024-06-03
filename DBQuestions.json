@@ -1,0 +1,230 @@
+Link
+---------------
+// https://github.com/truongcaoxuan/mongodb-crud-aggregation/tree/main/challenges
+
+//challenges collections
+{
+    "_id": {
+      "$oid": "665c1f82c47a779b68553ecc"
+    },
+    "name": "John Doe",
+    "email": "johndoe@example.com",
+    "age": 28,
+    "address": {
+      "street": "123 Main St",
+      "city": "New York",
+      "state": "NY",
+      "zipcode": "10001"
+    },
+    "favorites": {
+      "color": "blue",
+      "food": "pizza",
+      "movie": "The Shawshank Redemption"
+    },
+    "friends": [
+      {
+        "name": "Jane Smith",
+        "email": "janesmith@example.com"
+      },
+      {
+        "name": "Mike Johnson",
+        "email": "mikejohnson@example.com"
+      }
+    ]
+  }
+//orders collection
+{
+  "order_number": "ORD-001",
+  "customer_id": 1,
+  "total_amount": 100
+}
+//customers collection
+{
+  "name": "Alice Williams",
+  "email": "alice@example.com"
+}
+
+//peoples collection
+{
+  "address": {
+    "country": "France",
+    "city": "Marseille",
+    "postalCode": 13000,
+    "street": "Rue de Lyon"
+  },
+  "birthDate": {
+    "$date": "1991-05-23T10:29:00.000Z"
+  },
+  "firstName": "Lea",
+  "lastName": "Bernard",
+  "payments": [
+    {
+      "category": "relax",
+      "name": "disco",
+      "amount": 5.06
+    },
+    {
+      "category": "clothes",
+      "name": "dress",
+      "amount": 160.75
+    },
+    {
+      "category": "clothes",
+      "name": "dress",
+      "amount": 57.05
+    },
+    {
+      "category": "relax",
+      "name": "disco",
+      "amount": 55.04
+    },
+    {
+      "category": "relax",
+      "name": "cinema",
+      "amount": 13.57
+    },
+    {
+      "category": "health",
+      "name": "gym",
+      "amount": 28.22
+    },
+    {
+      "category": "relax",
+      "name": "holidays",
+      "amount": 762.88
+    },
+    {
+      "category": "food",
+      "name": "store",
+      "amount": 5.57
+    },
+    {
+      "category": "clothes",
+      "name": "handbag",
+      "amount": 32.86
+    },
+    {
+      "category": "clothes",
+      "name": "shoes",
+      "amount": 64.34
+    }
+  ],
+  "sex": "female",
+  "wealth": {
+    "bankAccounts": [
+      {
+        "bank": "BNP Paribas",
+        "balance": 3934.64
+      }
+    ],
+    "realEstates": [
+      {
+        "type": "flat",
+        "worth": 679000
+      }
+    ],
+    "market": {
+      "stocks": [],
+      "bonds": []
+    },
+    "credits": [
+      {
+        "bank": "BNP Paribas",
+        "type": "mortgage",
+        "value": 580069.7000000001
+      }
+    ]
+  }
+}
+
+
+//   challenge01: Find all users who are located in New York.
+db.challenges.find({'address.city':"New York"},{address:1})
+
+
+// challenge02: Find the user(s) with the email "johndoe@example.com" and retrieve their favorite movie.
+db.challenges.find({email:"johndoe@example.com"},{favorites.movie:1})
+
+// challenge03: Find all users with "pizza" as their favorite food and sort them according to age.
+db.challenges.find({"favorites.food":"pizza"}).sort({age:1})
+db.challenges.aggregate([
+    {$match:{"favorites.food":"pizza"}},
+    {$sort:{age:1}}
+    ])
+
+//challenge04: Find all users over 30 whose favorite color is "green".
+db.challenges.aggregate([
+    {$match:{
+    age:{$gt:30},"favorite.color":"green"}
+    }])
+
+//challenge05: Count the number of users whose favorite movie is "The Shawshank Redemption."
+db.challenges.aggregate([{$match:{"favorites.movie":"The Shawshank Redemption"}},{$group:{_id:"null",count:{$sum:1}}}])
+db.challenges.aggregate([{$match:{"favorites.movie":"The Shawshank Redemption"}},{$count:"total"}])
+
+// challenge06: Update the zipcode of the user with the email "johndoe@example.com" to "10002".
+db.challenges.aggregate([{$match:{email:"johndoe@example.com"}},{$set:{email:"10002"}}])
+
+// challenge07: Delete the user with the email "alicewilliams@example.com" from the user data.
+db.challenges.deleteOne({email:"alicewilliams@example.com"})
+
+// challenge08: Group users by their favorite movie and retrieve the average age in each movie group.
+db.challenges.aggregate([{$group:{_id:"$favorite.movie",averateAge:{$avg:"$age"}}}])
+
+// challenge09: Calculate the average age of users with a favorite " pizza " food.
+db.challenges.aggregate([{$match:{"favorites.food":"pizza"}},{$group:{_id:"null",averageAge:{$avg:"$age"}}},{$project:{_id:0,averageAge:1}}])
+
+// challenge10: Perform a lookup aggregation to retrieve the orders data along with the customer details for each order.
+db.orders.aggregate([
+  {
+    $lookup: {
+      from: "customers",
+      localField: "customer_id",
+      foreignField: "_id",
+      as: "inventory",
+    },
+  },
+  {
+    $project: { order_number: true, inventory: true },
+  },
+]);
+
+
+// challenge11 Group users by their favorite color and retrieve the count of users in each color group.
+db.challenges.aggregate([{$group:{_id:"$favorites.color",countt:{$sum:1}}},{$sort:{countt:1}}])
+
+// challenge12 Find the user(s) with the highest/Lowest age
+db.challenges.aggregate([{$group:{_id:"$age",countt:{$sum:1}}},{$sort:{_id:1}},{$limit:1},{$project:{countt:0}}])
+db.challenges.find().sort({age:+1}).limit(1)
+
+//challenge13 Find the most common favorite food among all users.
+db.challenges.aggregate({$group:{_id:"$favorites.food",count:{$sum:1}}},{$sort:{count:-1}},{$limit:1})
+
+// challenge14 Calculate the total count of friends across all users.
+db.challenges.aggregate({$project:{name:1,_id:0,noOfFriends:{$size:"$friends"}}},{$sort:{noOfFriends:1}})
+
+// challenge15 Find the user(s) with the longest name.
+db.challenges.aggregate([{$project:{name:1,_id:0,NameString:{$strLenCP:"$name"}}},{$sort:{"NameString":-1}},{$limit:1}])
+
+// challenge16 Calculate each state's total number of users in the address field.
+db.challenges.aggregate([{$group:{_id:"$address.state",noOfUser:{$sum:1}}},{$sort:{noOfUser:1}}])
+
+// challenge17 Find the user(s) with the highest number of friends.
+db.challenges.aggregate([{$project:{_id:"$name",noOfFriends:{$size:"$friends"}}},{$sort:{noOfFriends:-1}}])
+
+
+//Aggreate list
+
+// aggregate01: Count the number of people in each country.
+db.people.aggregate([{$group:{_id:"$address.country",noOfPeople:{$sum:1}}},{$sort:{noOfPeople:1}}])
+
+//aggregate02: What is the most popular address and how many people live there?
+db.people.aggregate([{$group:{_id:{country:"$address.country",city:"$address.city",postalCode:"$address.postalcode",street:"$address.street"},noOfPeople:{$sum:1}}},{$sort:{noOfPeople:1}}])
+
+// aggregate03: How many people in each country have ever paid at a restaurant?
+db.people.aggregate([{$match:{"payments.name":{$in:["restaurant"]}}},{$group:{_id:{country:"$address.country"},numberOfPeople:{$sum:1}}}])
+
+// aggregate04: Find 3 people with the most total account balance. If a person has the same total asset balance, compare using "firstName" and "lastName" fields
+db.people.aggregate([{$group:{_id:{fName:"$firstName",lName:"$lastName"},balance:{$sum:"$wealth.bankAccounts.balance"}}},{$sort:{balance:-1}},{$project:{fName:1,lName:1,balance:1}}])
+
+//aggregate05: Count the number of restaurant payments, the total amount spent, and the average amount per payment by country.

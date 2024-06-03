@@ -3,23 +3,18 @@ NewPatient
 1. Name
 2. DOB
 3. Email
-    Existing user check (if already exist then 10, else go with flow )    
-
 4. Gender
 5. Address
 6. Mobile
 7. Insurance (Yes)
 8. Name Insurance
 9. Member ID
-    EV check (if failed then show not eligible msg else continue with the flow)
-
 10. preferred HCP (Yes) 
 11. preferred HCP name
 12.Provider name
 13. DOA
 14. Table data
 15. Confirmation for booking
-16 if timeslot is already booked then ask for new time and date
 
 
 Existing Patient(here we will not show ANyTable details)
