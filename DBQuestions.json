@@ -330,3 +330,9 @@ db.people.find({$and: [
 // CRUD- Practice13: Find everyone who has one or more transactions worth less than $5.
 // CRUD- Practice14: Add an element to the payments of people who are in France with the following structure:
 // CRUD- Practice15: Delete all of everyone's market fields
+
+// Remove a single field from db
+db.people.updateOne( { _id: ObjectId("576865c0bab6cf2f2fb39d7a") } ,{ $unset: { "wealth.market": "" } } )
+
+// Remove single field from all the documents from db
+db.people.updateMany({}, {$unset: {"wealth.market":""}} )
