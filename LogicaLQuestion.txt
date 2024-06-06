@@ -456,11 +456,128 @@ console.log("Create a Array of variables : ", Array.of(a,b,c));
 
 ========================================================================================================================== 
 
+function test(username) {
+    return username;
+}
+console.log(test());
+// note:- when we do not pass the argument into a function in that case function return undefined. (but if we already pass a default value for a parameter then it will never return a undefined value.)
 
 
+========================================================================================================================== 
 
+Fibbonacci Series
+---------------------
 
+function Fibbo(num){
+    let arr=[]
+    let nextnum=0
+    let num1=0
+    let num2=1
+    for(let i=1;i<=num;i++)
+    {
+        arr.push(num1)
+        nextnum=num1+ num2
+        num1=num2
+        num2=nextnum
+        
+    }
+    return arr
+    
+}
 
+console.log(Fibbo(5))
+========================================================================================================================== 
+// note:- when we are checking a scope in window console enviroment there diffrent Global Scope and in a code enviroment Global scope is a diffrent things.
+
+// note:- When we print/console the `this` keyword  in a node enviroment(Global) it will console a empty object just because of in node global enviroment current time does not have a current data refrence.
+// note:- but when we console "this" keywork in a window enviroment then it will console the the windows onject inside a console. 
+console.log(this); 
+========================================================================================================================== 
+
+const fun =  () => {
+    return  "test";
+}
+console.log(fun());   // test
+
+========================================================================================================================== 
+
+//  implecit and explicit in function-
+---------------------------------------------------
+const FunOne = (num1,num2) => (num1+num2);
+console.log("implecit : ",FunOne(2,4));
+// note:- This approch is called implicit return  (when we do not need to use return keyword and wrap output with () called implicit return function.)
+
+explicit
+-----------------------------------------------
+const FunTwo = (num1,num2) =>{
+    return num1+num2;
+}
+console.log("explicit : ",FunTwo(2,3));
+// note:- This approch is called explicit return  (when we  need to use return keyword with curly braceses called explicit return function.)
+
+========================================================================================================================== 
+
+console.log("-----Immediately Invoked Function Expressions IIFE----");
+ 
+// syntax of IIFE :- ()();
+ 
+// Note:- this is use for To avoid the global scope polutions. (To remove the global scope variables declaration we use IIFE.)
+ 
+(()=>{ console.log("IIFE function for immidiate invocation.");})()
+
+========================================================================================================================== 
+
+// FOREACH loop
+--------------------------------
+const ArrLang =["JS","REACT.JS","NODE.JS","MONGODB"];
+ArrLang.forEach((val)=>{ console.log(val)});
+
+========================================================================================================================== 
+
+// -----function chaining--------
+---------------------------------------------------------
+   function  Fun() {
+    this.i = 1;
+    this.add = function  (num) {
+    this.i +=num;
+    return this;
+};
+    this.print = function(){
+    console.log(this.i);
+    return this;
+};
+} 
+let fun =   new Fun();
+fun.add(2).print();
+
+========================================================================================================================== 
+ 
+// ------------Prototype chaining--------
+-----------------------------------------------------------
+ 
+class Vehicle {
+   constructor(make,model,year) {
+       this.make = make;
+       this.model = model;
+       this.year = year;
+   }
+   start() {
+       console.log(`starting: ${this.make}, ${this.model} , ${this.year}`);
+   }
+ 
+}
+class Car extends Vehicle {
+    drive() {
+        console.log(`drive: ${this.make}, ${this.model} , ${this.year}`);
+    }
+}
+ 
+let  car = new Car('Honda', 'Civic', 2023);
+ 
+car.drive();
+car.start();
+
+========================================================================================================================== 
 
 
 
