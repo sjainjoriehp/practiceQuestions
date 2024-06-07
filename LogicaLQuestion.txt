@@ -590,12 +590,50 @@ quotes or not
 
 
 
+Collscan process when we scan a document in a collection one after another. Ixscan is a scan with a index over a collection
+
+types of indexes
+------------------------------------
+1. single field index
+2. compound index
+3. text index
+
+1. single field index
+-----------------------------------------------------------------------------------
+db.challenges.createIndex({age:1})
+db.challenges.dropIndex({" age"})
+
+ when to use:
+  -------------------------
+  when the collection is small.
+  when the collection is frequently use.
+  when the queries are complex(multiple fields)
+  when the collection is large.(make less indices)
 
 
+2. compound index
+-----------------------------------------------------------------------------------
+Here order matters, first its sort by age then by gender.
+
+db.challenges.createIndex({age:1,gender:1})
 
 
+db.challenges.createIndex({age:1},{partialFilterExpression:{age:{$gt:22}}})
+here this will create index age and sort it but it only be create only if the age is greater thgan 22 case.
 
 
+db.challenges.createIndex({"expires":1},{expireAfterSeconds:3600})
+this will create index but deletes after a given time.
 
+-----------------------------------------------------------------------------------
+Note:- 1.  if we have multiple indexes then it perform a testing on some collections before executing and running query , race among them and select,
+       the best one and reming the better one if the query revice.
+       2. MongoDB will create a seperate index entry for each value in an array.so it quir=ckly
+          look up documents that match a specific value.
 
+3. Text index
+-----------------------------------------------------------------------------------
+their is only single text index per collection.
 
+db.challenges.createIndex({bio:"text",name:"text"})
+db.challenges.find({$text:{$search:"sita"}})
