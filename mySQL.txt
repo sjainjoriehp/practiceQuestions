@@ -1,0 +1,277 @@
+Source w3school
+-----------------------------
+Note:--SQL keywords are NOT case sensitive. where Mongodb is case sensivtive.
+       Table name is sensitive.
+
+
+Semicolon after SQL Statements?
+---------------------------------------------
+Some database systems require a semicolon at the end of each SQL statement.
+
+Semicolon is the standard way to separate each SQL statement in database systems that allow more than one SQL statement to be executed in the same call to the server.
+
+Some of The Most Important SQL Commands
+---------------------------------------------
+SELECT - extracts data from a database
+UPDATE - updates data in a database
+DELETE - deletes data from a database
+INSERT INTO - inserts new data into a database
+CREATE DATABASE - creates a new database
+ALTER DATABASE - modifies a database
+CREATE TABLE - creates a new table
+ALTER TABLE - modifies a table
+DROP TABLE - deletes a table
+CREATE INDEX - creates an index (search key)
+DROP INDEX - deletes an index
+
+
+// select all record from table
+SELECT * FROM Customers;
+
+//The following SQL statement selects the "CustomerName", "City", and "Country" columns from the "Customers" 
+SELECT CustomerName, City, Country FROM Customers;
+
+
+// show DISTINCT Country values from table
+SELECT DISTINCT Country FROM Customers;
+
+//count distinct country names from table
+SELECT COUNT(DISTINCT Country) FROM Customers;
+
+//select all customer who live in maxicp
+SELECT * FROM Customers WHERE Country = 'Mexico';
+
+
+//selects all fields from "Customers" where country is "Germany" AND city is "Berlin"
+SELECT * FROM Customers where country="Germany" and city="Berlin";
+
+
+//count all fields from "Customers" where country is "Germany" AND city is "Berlin"
+SELECT count(*) FROM Customers where country="Germany" and city="Berlin";
+
+
+//selects all fields from "Customers" where country is "Germany" AND city must be "Berlin" OR "Stuttgart"
+SELECT * FROM Customers WHERE Country = 'Germany' AND (City = 'Berlin' OR City = 'Stuttgart');
+
+//selects all customers from the "Customers" table, sorted by the "Country" column decending order
+SELECT * FROM Customers ORDER BY Country desc;
+
+// sort the record by country, customer name
+SELECT * FROM Customers ORDER BY Country, CustomerName;
+
+//selects all customers from the "Customers" table, sorted ascending by the "Country" and descending by the "CustomerName" column
+SELECT * FROM Customers ORDER BY Country ASC, CustomerName DESC;
+
+//Lists all customers with a NULL value in the "Address" field:
+SELECT CustomerName, ContactName, Address FROM Customers WHERE Address IS NULL;
+
+//updates the first customer (CustomerID = 1) with a new contact person and a new city.
+update Customers set city="Hello" , cperson="sanat" where CustomerID=1;
+
+
+//deletes the customer "Alfreds Futterkiste" from the "Customers" table:
+delete from customers where CustomerName="Alfreds Futterkiste"
+
+// delete table customer
+delete from customer
+
+// show first three records from customer table
+select * from customer limit 3;
+
+
+//return only 3 records, start on record 4 (OFFSET 3)
+select * from customer limit 3 offset 3;
+
+//finds the price of the cheapest product: MIn,MAX,AVG,SUm
+select MIN(price) as minPrice from products;
+
+Like Operator
+----------------
+LIKE Operator	Description
+WHERE CustomerName LIKE 'a%'	Finds any values that start with "a"
+WHERE CustomerName LIKE '%a'	Finds any values that end with "a"
+WHERE CustomerName LIKE '%or%'	Finds any values that have "or" in any position
+WHERE CustomerName LIKE '_r%'	Finds any values that have "r" in the second position
+WHERE CustomerName LIKE 'a_%'	Finds any values that start with "a" and are at least 2 characters in length
+WHERE CustomerName LIKE 'a__%'	Finds any values that start with "a" and are at least 3 characters in length
+WHERE ContactName LIKE 'a%o'	Finds any values that start with "a" and ends with "o"
+
+//selects all customers that are located in "Germany", "France" or "UK":
+select * from customer where country in ('GErmany','France','UK')
+
+
+// selects all products with a price between 10 and 20 (same for not between)
+select * from customer where price between 10 and 20;
+
+//selects all products with a price between 10 and 20. In addition; do not show products with a CategoryID of 1,2, or 3
+select * from product where price between 10 and 20 and CategoryID not in (1,2,3)
+
+//selects all products with a ProductName between "Carnarvon Tigers" and "Mozzarella di Giovanni":
+select * from Products where ProductName between "Carnarvon Tigers" and "Mozzarella di Giovanni";
+
+// selects all products with a ProductName not between "Carnarvon Tigers" and "Mozzarella di Giovanni":
+select * from Products where ProductName not between "Carnarvon Tigers" and "Mozzarella di Giovanni";
+
+//creates two aliases, one for the CustomerID column and one for the CustomerName column:
+select CustomerID as id, CustomerName as name from customer;
+
+//creates an alias named "Address" that combine four columns (Address, PostalCode, City and Country):
+select CONCAT_WS(Address, PostalCode, City and Country) as "Adress" from customer;
+
+//selects all the orders from the customer with CustomerID=4 (Around the Horn). We use the "Customers" and "Orders" tables, and give them the table aliases of "c" and "o" respectively
+select o.orderid,c.CustomerName from Customers as c, Orders as o where c.CustomerID=4 and o.CustomerID=4;
+
+
+Supported Types of Joins in MySQL
+------------------------------------------
+INNER JOIN: Returns records that have matching values in both tables
+LEFT JOIN: Returns all records from the left table, and the matched records from the right table
+RIGHT JOIN: Returns all records from the right table, and the matched records from the left table
+CROSS JOIN: Returns all records from both tables
+
+
+// select all the values fro order and customer value have same CustomerID
+SELECT Orders.OrderID, Customers.CustomerName, Orders.OrderDate FROM Orders INNER JOIN Customers ON Orders.CustomerID=Customers.CustomerID;
+
+//statement will select all customers, and any orders they might have:
+select c.CustomerName,o.orderid from order as o left JOIN customer as c on o.CustomerID=c.CustomerID; 
+
+//statement will return all employees, and any orders they might have placed
+SELECT Orders.OrderID, Employees.LastName, Employees.FirstName FROM Orders RIGHT JOIN Employees ON Orders.EmployeeID = Employees.EmployeeID ORDER BY Orders.OrderID;
+
+
+//selects all customers, and all orders
+SELECT Customers.CustomerName, Orders.OrderID FROM Customers CROSS JOIN Orders;
+
+Self Join
+---------------
+A self join is a regular join, but the table is joined with itself.
+
+UNION Operator
+-------------------------
+The UNION operator is used to combine the result-set of two or more SELECT statements.
+Every SELECT statement within UNION must have the same number of columns
+The columns must also have similar data types
+The columns in every SELECT statement must also be in the same order
+
+SELECT City FROM Customers
+UNION
+SELECT City FROM Suppliers
+ORDER BY City;
+
+
+1. Understanding Stored Procedures:
+------------------------------------------
+What is a Stored Procedure? - A stored procedure is a set of SQL statements that can be stored in the MySQL database server. It's like a function in programming languages.
+Advantages of Stored Procedures: They enhance performance, improve security, and promote code reusability.
+
+2. Syntax:
+------------------------------
+DELIMITER //
+
+CREATE PROCEDURE simple_proc()
+BEGIN
+    SELECT * FROM customers;
+END //
+
+DELIMITER ;
+
+CALL procedure_name();
+
+
+Adding Parameters:
+---------------------------------
+DELIMITER //
+
+CREATE PROCEDURE get_customer_by_id(IN customer_id INT)
+BEGIN
+    SELECT * FROM customers WHERE id = customer_id;
+END //
+
+DELIMITER ;
+
+
+
+Dropping a Stored Procedure:
+----------------------------------
+DROP PROCEDURE IF EXISTS procedure_name;
+
+
+Link--https://github.com/ValentineFernandes/MySQL-Assignment
+-------------------------
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+indexing
+------------------------
+In MySQL, indexing is a crucial aspect of database optimization. Indexes are data structures that improve the speed of data retrieval operations on database tables. They work similarly to the index in a book, allowing the database to quickly locate specific rows in a table without having to scan the entire table.
+
+Here's a brief overview of indexing in MySQL:
+
+Types of Indexes:
+-------------------------
+Primary Key Index: A primary key uniquely identifies each record in a table and ensures its integrity. MySQL automatically creates an index on the primary key column(s).
+Unique Index: Ensures that the values in the indexed column(s) are unique across the table.
+Normal Index: A regular index created on one or more columns to improve the performance of search queries.
+Full-text Index: Specifically designed for full-text searches on text-based columns such as VARCHAR and TEXT.
+Creating Indexes:
+Indexes can be created when you define the table structure using the CREATE TABLE statement, or you can add them later using the CREATE INDEX or ALTER TABLE statements.
+
+Example of creating an index on a column:
+------------------------------------------
+CREATE INDEX index_name ON table_name(column_name);
+Using Indexes:
+MySQL automatically uses indexes to optimize query performance whenever possible. However, you can also use the FORCE INDEX hint to specify which index to use in a query.
+
+Example of using a specific index in a query:
+
+SELECT * FROM table_name FORCE INDEX (index_name) WHERE condition;
+Monitoring and Maintenance:
+Regularly monitor the performance of your queries to identify potential bottlenecks. You can use tools like the MySQL EXPLAIN statement to analyze query execution plans and determine if indexes are being utilized efficiently. Additionally, keep an eye on the size of your indexes, as they can impact the overall performance and storage requirements of your database.
+
+Index Optimization:
+--------------------------
+Avoid over-indexing, as it can slow down data modification operations (e.g., INSERT, UPDATE, DELETE) and increase storage requirements.
+Consider creating composite indexes for queries that involve multiple columns.
+Regularly analyze and optimize your indexes based on the workload and query patterns of your application.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+views
+-------------------
+In MySQL, a view is a virtual table that consists of a stored query. It behaves like a table, but its data is derived dynamically from one or more tables in the database. Views can simplify complex queries, abstract data, and provide a security mechanism by controlling access to specific columns or rows.
+
+Here's how you can create a basic view in MySQL:
+
+CREATE VIEW my_view AS
+SELECT column1, column2, ...
+FROM my_table
+WHERE condition;
+
+This creates a view named my_view based on the result of the SELECT query. You can then query this view as if it were a table:
+
+SELECT * FROM my_view;
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+GroupBy,Having,Exists,Any,All,
+
+
+
+
+
+
+indexes and views
+
+
+
+
+
+
+
+
+
+
+
+
