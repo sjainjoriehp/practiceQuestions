@@ -1,8 +1,12 @@
-CustomHooks
-useReducer
-useRef
-useContext
-useMemo
+useState
+useEffect
 useCallback
+useMemo
+useContext
+useReducer
+CustomHook
+
+Debouncing
+throttling
 redux
 fetch
