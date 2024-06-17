@@ -202,57 +202,9 @@ Link--https://github.com/ValentineFernandes/MySQL-Assignment
 
 
 
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-indexing
-------------------------
-In MySQL, indexing is a crucial aspect of database optimization. Indexes are data structures that improve the speed of data retrieval operations on database tables. They work similarly to the index in a book, allowing the database to quickly locate specific rows in a table without having to scan the entire table.
 
-Here's a brief overview of indexing in MySQL:
 
-Types of Indexes:
--------------------------
-Primary Key Index: A primary key uniquely identifies each record in a table and ensures its integrity. MySQL automatically creates an index on the primary key column(s).
-Unique Index: Ensures that the values in the indexed column(s) are unique across the table.
-Normal Index: A regular index created on one or more columns to improve the performance of search queries.
-Full-text Index: Specifically designed for full-text searches on text-based columns such as VARCHAR and TEXT.
-Creating Indexes:
-Indexes can be created when you define the table structure using the CREATE TABLE statement, or you can add them later using the CREATE INDEX or ALTER TABLE statements.
 
-Example of creating an index on a column:
-------------------------------------------
-CREATE INDEX index_name ON table_name(column_name);
-Using Indexes:
-MySQL automatically uses indexes to optimize query performance whenever possible. However, you can also use the FORCE INDEX hint to specify which index to use in a query.
-
-Example of using a specific index in a query:
-
-SELECT * FROM table_name FORCE INDEX (index_name) WHERE condition;
-Monitoring and Maintenance:
-Regularly monitor the performance of your queries to identify potential bottlenecks. You can use tools like the MySQL EXPLAIN statement to analyze query execution plans and determine if indexes are being utilized efficiently. Additionally, keep an eye on the size of your indexes, as they can impact the overall performance and storage requirements of your database.
-
-Index Optimization:
---------------------------
-Avoid over-indexing, as it can slow down data modification operations (e.g., INSERT, UPDATE, DELETE) and increase storage requirements.
-Consider creating composite indexes for queries that involve multiple columns.
-Regularly analyze and optimize your indexes based on the workload and query patterns of your application.
-
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-views
--------------------
-In MySQL, a view is a virtual table that consists of a stored query. It behaves like a table, but its data is derived dynamically from one or more tables in the database. Views can simplify complex queries, abstract data, and provide a security mechanism by controlling access to specific columns or rows.
-
-Here's how you can create a basic view in MySQL:
-
-CREATE VIEW my_view AS
-SELECT column1, column2, ...
-FROM my_table
-WHERE condition;
-
-This creates a view named my_view based on the result of the SELECT query. You can then query this view as if it were a table:
-
-SELECT * FROM my_view;
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 GroupBy,Having,Exists,Any,All,
@@ -262,7 +214,7 @@ GroupBy,Having,Exists,Any,All,
 
 
 
-indexes and views
+
 
 
 
