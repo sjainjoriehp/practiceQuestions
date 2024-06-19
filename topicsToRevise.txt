@@ -1,12 +1,16 @@
-useState
-useEffect
-useCallback
-useMemo
-useContext
+CustomHooks
 useReducer
-CustomHook
-
-Debouncing
-throttling
+useRef
+useContext
+useMemo
+useCallback
 redux
 fetch
+Sharding
+error bounderies
+generator functions
+
+
+
+
+

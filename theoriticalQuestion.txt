@@ -8,4 +8,52 @@ security algorithm names
 =====#################################################====================================================================
 * Cipher * Mac  * Rsa * KwyGenerator
 * Keystore 
-=====*************************************************================================================================================================
+=====*************************************************====================================================================
+how React code converts into an browser showing page
+----------------------------------------------------
+When you write React code, it doesn't directly translate into native machine code immediately. Here’s a breakdown of what typically happens:
+
+1.  React Code (JSX): React code is written using JSX (JavaScript XML), which is a syntax extension for JavaScript. JSX code looks similar to HTML and is compiled into regular JavaScript.
+
+2. JavaScript Object Representation: JSX code is transformed into regular JavaScript using a tool like Babel. Babel converts JSX into JavaScript function calls, which create React elements. These React elements are JavaScript objects that describe what should appear on the screen.
+
+3. React Element Tree: These JavaScript objects form a virtual DOM (Document Object Model), which represents the structure of your UI. This virtual DOM is a lightweight copy of the actual DOM and is used to efficiently update the user interface.
+
+4. Rendering to DOM: React then takes these JavaScript objects and renders them to the actual DOM (HTML) in the browser. This process involves reconciling the differences between the virtual DOM and the actual DOM and updating only the parts of the DOM that have changed.
+
+Optimization and Execution: The browser then takes care of translating the DOM into native machine code that the computer's processor can execute. Modern browsers have sophisticated rendering engines that optimize this process for performance.
+
+In summary, React code (written in JSX) undergoes transformation into regular JavaScript, which then interacts with the browser’s rendering engine to produce the final native machine code that runs on the user's device. The transformation from JSX to JavaScript happens primarily during development through tools like Babel, and the rest of the process is handled by the browser at runtime.
+
+
+===============================================================================================================
+synthetic events
+---------------------
+Synthetic events in React refer to a wrapper around the native browser events, providing a consistent API for handling events across different browsers. Here's a more detailed explanation:
+
+What are Synthetic Events?
+1. Wrapper Around Native Events: When you write event handlers in React (e.g., onClick, onChange), you're actually using synthetic events. React wraps the native browser events (like click, change, keydown, etc.) into its own event system.
+
+2. Cross-Browser Consistency: Synthetic events ensure consistent behavior across different browsers. Browsers may have slight differences in how they handle events and their properties. React abstracts away these differences by normalizing event handling.
+
+3. Event Pooling: React uses event pooling to improve performance. Instead of creating a new event object for every interaction, React reuses event objects and resets their properties after the event handler has been called. This helps reduce memory usage and improve performance.
+
+How Synthetic Events Work
+-------------------------
+Event Propagation: Synthetic events in React mimic the behavior of native events, including event bubbling (propagation from child to parent elements) and capturing (propagation from parent to child elements).
+
+Event Properties: Synthetic events have properties similar to native events (event.target, event.currentTarget, event.preventDefault(), etc.), making them familiar to developers already accustomed to working with browser events.
+
+Asynchronous Nature: Event handling in React is asynchronous. This means that even though event handlers are called synchronously during event propagation, React batches state updates for performance reasons.
+
+Benefits of Using Synthetic Events
+----------------------------------
+Consistency: Provides a consistent API for handling events across different browsers.
+
+Performance: Event pooling improves performance by reducing memory allocation and garbage collection overhead.
+
+Ease of Use: Developers can use the same event handling patterns regardless of the underlying browser differences.
+
+
+
+===============================================================================================================

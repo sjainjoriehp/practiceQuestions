@@ -442,7 +442,7 @@ it will devide that num and gives the remainder
 33.
      // convert geven value into Boolean false
              let data="true"
-           console.log(!tsypeof data)
+           console.log(!typeof data)
 
 
 

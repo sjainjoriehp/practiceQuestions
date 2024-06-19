@@ -451,7 +451,7 @@ console.log("Merge array with  Spred oprator : " , SpredArr);
  
 const FArr =[1,2,4,5,[9,90],50,[6,7,[76,43,21],8]];
  
-// note:- If we have anested array and we want to make it a flat array so we can use flat() function to create a flat array.
+// note:- If we have anested array and we want toi make it a flat array so we can use flat() function to create a flat array.
 // If we have n number of nested array into a array so that case we just pass the Infinity as a paramenter for flat() function
  
 const flatArr = FArr.flat(Infinity);
@@ -513,6 +513,27 @@ function Fibbo(num){
 }
 
 console.log(Fibbo(5))
+
+=================Palindrome Numvber========================================================================================================= 
+
+function fibbo(num) {
+    let ori=num
+    let result=0;
+    while(num>0)
+    {
+        let rem=num%10
+        result=result*10+rem
+        num=Math.floor(num/10)
+       
+    }
+    
+    return result==ori
+    
+    
+}
+console.log(fibbo(101));
+
+
 ========================================================================================================================== 
 // note:- when we are checking a scope in window console enviroment there diffrent Global Scope and in a code enviroment Global scope is a diffrent things.
 
