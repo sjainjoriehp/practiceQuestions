@@ -56,4 +56,76 @@ Ease of Use: Developers can use the same event handling patterns regardless of t
 
 
 
-===============================================================================================================
+==============================================================================================================================================================================================================================
+Error Boudries in React
+
+App.JS
+------
+
+import React from 'react';
+import ErrorBoundary from './ErrorBoundry';
+
+const Alert=({message})=>{
+
+     if(!typeof(message)==String || !message)
+      {
+         throw new Error("Message should be string")  
+      }
+      else{
+        return(
+          <h1>I am Alert</h1>
+        )
+      }
+      
+
+}
+
+
+const App = () => {
+  return (
+    <div>
+      <h1>My React App</h1>
+      <ErrorBoundary>
+      <Alert message={"sd"}  />
+      </ErrorBoundary>
+        
+      
+    </div>
+  );
+};
+
+export default App;
+
+
+ErrorBoundry.JS
+----------------------
+import React, { useState } from 'react';
+
+
+class ErrorBoundary extends React.Component{
+  
+     constructor(props){
+        super(props)
+        this.state={hasError:false}
+     }
+
+      componentDidCatch(error){
+        this.setState({hasError:true})
+      }
+
+
+       render(){
+        if(this.state.hasError){
+               return <h1>SOme Error</h1>
+        }
+
+        return this.props.children
+
+       }
+
+}
+
+
+export default ErrorBoundary
+
+==============================================================================================================================================================================================================================
