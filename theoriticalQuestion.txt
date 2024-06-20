@@ -128,4 +128,79 @@ class ErrorBoundary extends React.Component{
 
 export default ErrorBoundary
 
-==============================================================================================================================================================================================================================
+==========================================================================
+Create a function which uses fetch and work as an axios 
+--------------------------------------------------------
+const App = () => {
+
+       let[apiResult,setapiResult]=useState()
+
+
+  let networkCall=(url,methodCall,body)=>{
+
+    const options = {
+      method: methodCall,
+      // headers: {
+      // "Content-Type": "application/json",
+      // },
+      // body: JSON.stringify(body),
+      }
+
+       // Only include body if method is not GET
+    if (methodCall.toUpperCase() !== 'GET') {
+      options.headers = {
+          "Content-Type": "application/json",
+      };
+      options.body = JSON.stringify(body);
+  }
+
+      return fetch(url,options).then((res)=>{
+              
+               if(!res.ok)
+                {
+                   throw new Error("SOmewthing went wrong")
+                }
+                return res.json()
+
+        }).then((result)=>{  return result })
+        .catch(error=>{
+           console.log("Error in catch block",error)
+        })
+    
+      
+
+   }
+
+        useEffect(()=>{
+             networkCall("https://jsonplaceholder.typicode.com/todos","GET").then(data=>{
+              // console.log("datais",data)
+              setapiResult(data)
+             })
+             
+           
+
+        },[])
+
+
+
+
+
+  return (
+    <div>
+      <h1>My React App</h1>
+        {
+            apiResult?.map((e)=>{
+              return(
+                <h1>{e.id}</h1>
+              )
+            })
+        }
+
+      
+    </div>
+  );
+};
+
+export default App;
+
+====================================================================================================================================================
