@@ -12,6 +12,7 @@ generator functions
 Should use <React.Fragment> instead of <>, because it will not create new node in DOM and has minimal performance.It's purely a wrapper in the React virtual DOM
 Implementation of callback function
 index.html the first file to be accessed by the browser and the initial step in launching your React application.
-
-
-
+CSR and SSR
+steps to generate react app as server side rendering
+polyfill in javascript
+how we can call two api same time in react

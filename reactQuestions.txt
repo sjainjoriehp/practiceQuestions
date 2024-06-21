@@ -299,3 +299,202 @@ let changeNum=(state=initial,action)=>{
 export  {changeNum}
 
 ============================================================================================================================================================================================================================================================================
+how we can call two api same time in react
+------------------------------------------
+Note:--The number of APIs you can call inside Promise.all is practically unlimited, but it depends on several factors such as system resources, network limitations, and the practicality of managing a large number of concurrent requests effectively.
+------------------------------------------
+const App = () => {
+     
+      let [data1,setdata1]=useState()
+      let [data2,setdata2]=useState()
+  
+
+       useEffect( ()=> {
+   
+              async function fetchData(){
+                let [res1,res2]=await Promise.all([
+                  fetch('https://jsonplaceholder.typicode.com/todos/1'),
+                  fetch('https://jsonplaceholder.typicode.com/todos/2')
+                ])
+              
+                let result1=await res1.json()
+                let result2=await res2.json()
+                setdata1(result1)
+                setdata2(result2)
+                  
+            
+               }
+
+                  fetchData()
+
+              }
+              ,[])
+  return (
+    <div>
+      <h1>My React App</h1>
+         {
+          data1 && data2 ? (
+            <div>
+              <h1>{data1["id"]}</h1>
+              <h2>{data2["title"]}</h2>
+            </div>
+           ) :<p>...Loading</p>
+  
+         }
+    </div>
+  );
+};
+
+export default App;
+============================================================================================================================================================================================================================================================================
+Error Boudries in React
+
+App.JS
+------
+
+import React from 'react';
+import ErrorBoundary from './ErrorBoundry';
+
+const Alert=({message})=>{
+
+     if(!typeof(message)==String || !message)
+      {
+         throw new Error("Message should be string")  
+      }
+      else{
+        return(
+          <h1>I am Alert</h1>
+        )
+      }
+      
+
+}
+
+
+const App = () => {
+  return (
+    <div>
+      <h1>My React App</h1>
+      <ErrorBoundary>
+      <Alert message={"sd"}  />
+      </ErrorBoundary>
+        
+      
+    </div>
+  );
+};
+
+export default App;
+
+
+ErrorBoundry.JS
+----------------------
+import React, { useState } from 'react';
+
+
+class ErrorBoundary extends React.Component{
+  
+     constructor(props){
+        super(props)
+        this.state={hasError:false}
+     }
+
+      componentDidCatch(error){
+        this.setState({hasError:true})
+      }
+
+
+       render(){
+        if(this.state.hasError){
+               return <h1>SOme Error</h1>
+        }
+
+        return this.props.children
+
+       }
+
+}
+
+
+export default ErrorBoundary
+
+==========================================================================
+Create a function which uses fetch and work as an axios 
+--------------------------------------------------------
+const App = () => {
+
+       let[apiResult,setapiResult]=useState()
+
+
+  let networkCall=(url,methodCall,body)=>{
+
+    const options = {
+      method: methodCall,
+      // headers: {
+      // "Content-Type": "application/json",
+      // },
+      // body: JSON.stringify(body),
+      }
+
+       // Only include body if method is not GET
+    if (methodCall.toUpperCase() !== 'GET') {
+      options.headers = {
+          "Content-Type": "application/json",
+      };
+      options.body = JSON.stringify(body);
+  }
+
+      return fetch(url,options).then((res)=>{
+              
+               if(!res.ok)
+                {
+                   throw new Error("SOmewthing went wrong")
+                }
+                return res.json()
+
+        }).then((result)=>{  return result })
+        .catch(error=>{
+           console.log("Error in catch block",error)
+        })
+    
+      
+
+   }
+
+        useEffect(()=>{
+             networkCall("https://jsonplaceholder.typicode.com/todos","GET").then(data=>{
+              // console.log("datais",data)
+              setapiResult(data)
+             })
+             
+           
+
+        },[])
+
+
+
+
+
+  return (
+    <div>
+      <h1>My React App</h1>
+        {
+            apiResult?.map((e)=>{
+              return(
+                <h1>{e.id}</h1>
+              )
+            })
+        }
+
+      
+    </div>
+  );
+};
+
+export default App;
+
+===========================================================================================================================================================================================================================================================================
+
+
+
+

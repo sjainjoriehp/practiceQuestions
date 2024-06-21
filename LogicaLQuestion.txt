@@ -626,6 +626,36 @@ car.drive();
 car.start();
 
 ========================================================================================================================== 
+Flat given array without using any inbuild method
+-------------------------------------------------
+
+let arr=[1,2,3,[12,13,14,51],[42,44],54,65]
+let result=[]
+
+function flatArray(arr){
+   
+    for(let i=0;i<arr.length;i++)
+    {
+        if(Array.isArray(arr[i]))
+        {
+            flatArray(arr[i])
+        }
+        else
+        {
+            result.push(arr[i])
+        }
+   
+    }
+
+}
+
+
+flatArray(arr)
+console.log(result)
+----------------------------------------------------------------------------------------------------------------------------
+
+
+
 
 
 
