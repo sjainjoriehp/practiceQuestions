@@ -15,4 +15,3 @@ index.html the first file to be accessed by the browser and the initial step in 
 CSR and SSR
 steps to generate react app as server side rendering
 polyfill in javascript
-how we can call two api same time in react
