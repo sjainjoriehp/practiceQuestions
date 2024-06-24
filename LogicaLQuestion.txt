@@ -653,8 +653,21 @@ function flatArray(arr){
 flatArray(arr)
 console.log(result)
 ----------------------------------------------------------------------------------------------------------------------------
+What is prototype, and how it work,  how we can achieve, it in js
+------------------------------------------------------------------
+function Person(name, age) {
+    this.name = name;
+    this.age = age;
+}
 
+Person.prototype.sayHello = function() {
+    console.log(`Hello, my name is ${this.name}.`);
+};
 
+let person1 = new Person("Alice", 30);
+person1.sayHello(); // Outputs: Hello, my name is Alice.
+
+----------------------------------------------------------------------------------------------------------------------------
 
 
 
