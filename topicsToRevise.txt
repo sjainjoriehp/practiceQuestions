@@ -9,9 +9,11 @@ fetch
 Sharding
 error bounderies (https://www.youtube.com/watch?v=cRIFppRVpUQ&ab_channel=CoderDost)
 generator functions
-Should use <React.Fragment> instead of <>, because it will not create new node in DOM and has minimal performance.It's purely a wrapper in the React virtual DOM
+Should use <React.Fragment> instead of <>, because both will not create new node in DOM and has minimal performance.It's purely a wrapper in the React virtual DOM
+(Key Attribute for Lists,JSX Parser Compatibility,Named Fragments)
 Implementation of callback function
 index.html the first file to be accessed by the browser and the initial step in launching your React application.
 CSR and SSR
 steps to generate react app as server side rendering
 polyfill in javascript
+what are hooks in mongodb
