@@ -198,6 +198,8 @@ DROP PROCEDURE IF EXISTS procedure_name;
 
 
 Link--https://github.com/ValentineFernandes/MySQL-Assignment
+      https://github.com/mdh266/SQL-Practice?tab=readme-ov-file
+      https://en.wikibooks.org/wiki/SQL_Exercises
 -------------------------
 
 
