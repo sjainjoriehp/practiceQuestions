@@ -17,3 +17,7 @@ CSR and SSR
 steps to generate react app as server side rendering
 polyfill in javascript
 what are hooks in mongodb
+What is prototype, and how it work,  how we can achieve, it in js
+rebase
+squash
+merge
