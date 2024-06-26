@@ -22,4 +22,5 @@ rebase
 squash
 merge
 p[title^="para"] {background: green;}
-what if i want to move to other branch without making commit 
+what if i want to move to other branch without making commit (git stash)
+\create a input and button inreact which accepts only number in input box. check validation in react  
