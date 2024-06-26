@@ -1,3 +1,9 @@
+ isNaN(true) //false
+
+isNaN(false) //false
+
+isNaN(undefined)// true
+ 
  //console.log(7+9 +"23") //1623
  
  //console.log(2 + '2' - '2');   // 20

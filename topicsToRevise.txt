@@ -21,3 +21,5 @@ What is prototype, and how it work,  how we can achieve, it in js
 rebase
 squash
 merge
+p[title^="para"] {background: green;}
+what if i want to move to other branch without making commit 
