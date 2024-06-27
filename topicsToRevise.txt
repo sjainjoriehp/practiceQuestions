@@ -18,10 +18,11 @@ steps to generate react app as server side rendering
 polyfill in javascript
 what are hooks in mongodb
 What is prototype, and how it work,  how we can achieve, it in js
-rebase
-squash
+rebase -- history remains same and commit on the subbranch in a single line 
+squash -- we merge this with a single commit over the previous commits
+stash --  what if i want to move to other branch without making commit (git stash)
 merge
 p[title^="para"] {background: green;}
-what if i want to move to other branch without making commit (git stash)
 \create a input and button inreact which accepts only number in input box. check validation in react  
 create a design where every digit is inside an square in a single line
+garbage collection
