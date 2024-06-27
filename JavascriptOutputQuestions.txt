@@ -412,6 +412,7 @@ false
 output
 --------------------------------------
 with seal u can modify the object by can not add new properties to it.
+In Object.freeze() we can't add new property nor can modify existing property.
 
 =====*************************************************================================================================================================
 
@@ -451,9 +452,6 @@ it will devide that num and gives the remainder
      // convert geven value into Boolean false
              let data="true"
            console.log(!typeof data)
-
-
-
 
 
 =====*************************************************================================================================================================
