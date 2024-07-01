@@ -11,6 +11,7 @@ it is used to initialize an object. Note that the constructor name must match th
 All classes have constructors by default: if you do not create a class constructor yourself, C# creates one for you. However, then you are not able to set initial values for fields.
 Constructors save time! Take a look at the last example on this page to really understand why.
 Tip: Just like other methods, constructors can be overloaded by using different numbers of parameters.
+A class can have multiple constructors that differ in the number and/or type of their parameters.    
 
 Access Modifiers
 -------------------
