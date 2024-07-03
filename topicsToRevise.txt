@@ -26,3 +26,9 @@ p[title^="para"] {background: green;}
 \create a input and button inreact which accepts only number in input box. check validation in react  
 create a design where every digit is inside an square in a single line
 garbage collection
+anargram
+
+https://github.com/sandeep0231/SQL_Practice/blob/main/Questions
+We have a two collections posts and comments, find the average of comments per post.
+execute multiple api data in react and handle error.( Promise.all)
+how to select which database to use SQL and NOSQL and why to use?

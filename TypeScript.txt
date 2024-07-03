@@ -657,7 +657,9 @@ function printMileage(mileage: number | null | undefined) {
 
 printMileage(null); // Prints 'Mileage: Not Available'
 printMileage(0); // Prints 'Mileage: 0'
+---------------------------------------------------------------------------------------------
 
+if I want to combine all values from the already defined type then i will use & symbol in between the diffrent  type.
 
 ---------------------------------------------------------------------------------------------
 TS 5 features
