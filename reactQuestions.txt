@@ -493,7 +493,119 @@ const App = () => {
 
 export default App;
 
-===========================================================================================================================================================================================================================================================================
+----------------------------------------------------------------------------------------------------- 
+[12:37] Ritesh Singh
+let's consider a scenario where we need to fetch data from three different API endpoints.run these calls in parallel and ensure that we handle both successful responses and errors appropriately.
+// URLs of the APIs to fetch data from
+  const apiUrls = [
+    'https://api.example.com/data1',
+    'https://api.example.com/data2',
+    'https://api.example.com/data3'
+  ];
+execute multiple api data in react and handle error.( Promise.all)
+==================================================================
+function App() {
+
+    let [result1,setresult1]=useState([])
+    let [result2,setresult2]=useState([])
+    let [result3,setresult3]=useState([])
+
+   let apiArr=['https://fakestoreapi.com/products/1','https://fakestoreapi.com/products/2','https://fakestoreapi.com/products/3']
+
+
+    async function handleAPi(){
+      
+      try{
+        let res1=await  fetch(apiArr[0])
+      let res2=await  fetch(apiArr[1])
+      let res3=await  fetch(apiArr[2])
+      
+      let resultt1=await res1.json()
+      let resultt2=await res2.json()
+      let resultt3=await res3.json()
+         
+      setresult1(resultt1)
+      setresult2(resultt2)
+      setresult3(resultt3)
+      
+      return [resultt1,resultt2,resultt3]
+      }
+      catch(err)
+      {
+        throw err
+      }
+
+    }
+
+
+   function callAPi(){
+
+    Promise.all([handleAPi()]).then(([resultt1,resultt2,resultt3])=>{
+      console.log("R1 data is ",resultt1)
+    })
+
+   }
+
+
+
+  useEffect(()=>{
+    
+    callAPi()
+
+ },[])
+
+
+  return (
+    <div className="App">
+     
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+      {
+        result1 && result2 && (
+             <>
+               <h1>{result1["id"]}</h1>
+               <h2>{result2.id}</h2>
+             </>
+        )
+      }
+              <h1>Third API result</h1>
+      {
+      result3 &&    
+            (
+              <>
+              <p>{result3.id}</p>
+              <p>{result3.description}</p>
+              </>
+            )
+          
+      }
+       
+    </div>
+  );
+}
+
+export default App;
+------------------------------------------------------------------------------------------------------------------------------
+Why this is giving undefined after a result
+===========================================
+function a(x){
+    return function b(y){
+       console.log(x+y)
+     }
+     
+}
+
+
+let ay=a(2)
+console.log(ay(3))
+
+output
+--------
+5
+undefined
+------------------------------------------------------------------------------------------------------------------------------
+
 
 
 

@@ -673,6 +673,77 @@ let arr=[1,2,3,1,2,1,2,1,4]
 output={ '1': 4, '2': 3, '3': 1, '4': 1 }
 
 ----------------------------------------------------------------------------------------------------------------------------
+Create a select drop-down where name will be displayed and based on name selection show the details
+===================================================================================================
+ let arr = [
+    { name: "George", age: 32, retiredate: "March 12, 2014" },
+    { name: "Edward", age: 17, retiredate: "June 2, 2023" },
+    { name: "Christine", age: 58, retiredate: "December 20, 2036" },
+    { name: "Sarah", age: 62, retiredate: "April 30, 2020" },
+  ];
+-----------------------------------------------------------------------------------------------------
+
+Write a function that would do this -
+var addSix = createBase(6);
+addSix(10); // returns 16
+addSix(21); // returns 27
+
+-----------------------------------------------------------------------------------------------------
+
+var trees = ["xyz", "xxxx", "test", "ryan", "apple"];delete trees[3];console.log(trees.length);
+ 
+-----------------------------------------------------------------------------------------------------
+
+(function() {
+
+	console.log(typeof displayFunc);
+
+	var displayFunc = function(){
+
+		console.log("Hi I am inside displayFunc");
+
+	}
+
+}());
+ 
+-----------------------------------------------------------------------------------------------------
+
+What will the following code output?
+for (var i = 0; i < 3; i++) {
+  setTimeout(function() { alert(i); }, 1000 + i);
+}
+-----------------------------------------------------------------------------------------------------
+
+Write an Express middleware function that logs the details of every request (method, URL, and timestamp) and manages errors.
+ 
+[12:27] Sanat Jain
+export.logs=((req,res,next)=>{
+    let time=new Date().getTIme()
+     console.log(req.url," ",req.method," ",time)
+       next()
+})
+
+-----------------------------------------------------------------------------------------------------
+ 
+Let's consider a blogging platform scenario where we have two collections: posts and comments. We want to calculate the average number of comments per post. Here's how the documents in these collections might look
+
+Posts - {
+  "_id": ObjectId("..."),
+  "title": "First Post",
+  "author": "Jane Doe",
+  "content": "This is the first post.",
+  "publishDate": ISODate("2023-01-01")
+}
+Comments - {
+  "_id": ObjectId("..."),
+  "postId": ObjectId("..."), // Reference to Posts._id
+  "commentText": "Great post!",
+  "author": "John Smith",
+  "commentDate": ISODate("2023-01-02")
+}
+The task is to calculate the average number of comments per post.
+ 
+-----------------------------------------------------------------------------------------------------
 Anargram
 --------
 
@@ -704,126 +775,10 @@ function Ana(s1,s2){
 
 
 console.log( Ana(str1,str2) )
-----------------------------------------------------------------------------------------------------------------------------
-Return the same output visible in below code
-============================================
-let sum=(a)=>{
-    
-    return function (b){
-       return a+b
-  }
-}
-
-
-let add= sum(5)
-console.log(add(3))//8
-console.log(add(4))//9
-------------------------------------------------------------------------------------------------------------------------------
-execute multiple api data in react and handle error.( Promise.all)
-==================================================================
-function App() {
-
-    let [result1,setresult1]=useState([])
-    let [result2,setresult2]=useState([])
-    let [result3,setresult3]=useState([])
-
-   let apiArr=['https://fakestoreapi.com/products/1','https://fakestoreapi.com/products/2','https://fakestoreapi.com/products/3']
-
-
-    async function handleAPi(){
-      
-      try{
-        let res1=await  fetch(apiArr[0])
-      let res2=await  fetch(apiArr[1])
-      let res3=await  fetch(apiArr[2])
-      
-      let resultt1=await res1.json()
-      let resultt2=await res2.json()
-      let resultt3=await res3.json()
-         
-      setresult1(resultt1)
-      setresult2(resultt2)
-      setresult3(resultt3)
-      
-      return [resultt1,resultt2,resultt3]
-      }
-      catch(err)
-      {
-        throw err
-      }
-
-    }
-
-
-   function callAPi(){
-
-    Promise.all([handleAPi()]).then(([resultt1,resultt2,resultt3])=>{
-      console.log("R1 data is ",resultt1)
-    })
-
-   }
+-----------------------------------------------------------------------------------------------------
 
 
 
-  useEffect(()=>{
-    
-    callAPi()
-
- },[])
-
-
-  return (
-    <div className="App">
-     
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-      {
-        result1 && result2 && (
-             <>
-               <h1>{result1["id"]}</h1>
-               <h2>{result2.id}</h2>
-             </>
-        )
-      }
-              <h1>Third API result</h1>
-      {
-      result3 &&    
-            (
-              <>
-              <p>{result3.id}</p>
-              <p>{result3.description}</p>
-              </>
-            )
-          
-      }
-       
-    </div>
-  );
-}
-
-export default App;
-------------------------------------------------------------------------------------------------------------------------------
-Why this is giving undefined after a result
-===========================================
-function a(x){
-    return function b(y){
-       console.log(x+y)
-     }
-     
-}
-
-
-let ay=a(2)
-console.log(ay(3))
-
-output
-------
-5
-undefined
-------------------------------------------------------------------------------------------------------------------------------
-
--------------------------------------------------------------------------------------------------------------------------------
 JWT can we used it only at login time
 what algo we generally use at JWT default one 
 find({age:30})
