@@ -595,7 +595,78 @@ function a(x){
      }
      
 }
+-------------------------------------------------------------------------------------------------------------------------------
+How we can manage multiple states in a single useState hook
+===========================================================
+import React, { useState } from 'react';
 
+const FormExample = () => {
+  const [state, setState] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+  });
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setState((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // Handle form submission logic here, e.g., sending data to server or processing it locally
+    console.log('Form submitted with state:', state);
+    // Reset form fields if needed
+    setState({
+      firstName: '',
+      lastName: '',
+      email: '',
+    });
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <label>
+        First Name:
+        <input
+          type="text"
+          name="firstName"
+          value={state.firstName}
+          onChange={handleChange}
+        />
+      </label>
+      <br />
+      <label>
+        Last Name:
+        <input
+          type="text"
+          name="lastName"
+          value={state.lastName}
+          onChange={handleChange}
+        />
+      </label>
+      <br />
+      <label>
+        Email:
+        <input
+          type="email"
+          name="email"
+          value={state.email}
+          onChange={handleChange}
+        />
+      </label>
+      <br />
+      <button type="submit">Submit</button>
+    </form>
+  );
+};
+
+export default FormExample;
+
+-------------------------------------------------------------------------------------------------------------------------------
 
 let ay=a(2)
 console.log(ay(3))

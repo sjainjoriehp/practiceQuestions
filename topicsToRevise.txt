@@ -33,3 +33,4 @@ execute multiple api data in react and handle error.( Promise.all)
 how to select which database to use SQL and NOSQL and why to use?
 difference between type and interface in typescript?
 setter didn't have any type in typescript.
+https://leetcode.com/problems/3sum/description/
