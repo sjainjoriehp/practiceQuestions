@@ -1,3 +1,5 @@
+jwt means stateless, sessions means need to maintain state in database(need to call db user to authorise the user)
+git is a software and github is a online service where git is hosted
 CustomHooks
 useReducer
 useRef
@@ -34,3 +36,4 @@ how to select which database to use SQL and NOSQL and why to use?
 difference between type and interface in typescript?
 setter didn't have any type in typescript.
 https://leetcode.com/problems/3sum/description/
+why Anonymous  functions are introduced in javascript
