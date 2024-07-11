@@ -1,0 +1,104 @@
+config
+------
+git config --global user.name=""
+git config --global user.email=""
+
+to rename branch
+----------------
+git branch -m oldName newName
+
+to compare difference between two log,commit or branch
+------------------------------------------------------
+git diff firstBranch secondBranch
+git diff firstBranch..secondBranch
+
+Note:- same will be applied for log and commits
+
+merge
+-----
+git checkout branchName(where to merge)
+git merge main (from which branch you want to merge)
+
+
+TO save cureret changes in the temporory location
+-------------------------------------------------
+git stash 
+
+Naming the stash
+----------------
+git stash save "This is my first stash"
+
+To show the list of the stash
+-----------------------------
+git stash list
+
+This command will place the top stash to the branch
+---------------------------------------------------
+git stash apply
+
+to apply any specific stash from the list
+-----------------------------------------
+git stash apply stash@{0}
+
+to apply and remove stash
+-------------------------
+git stash pop
+
+to apply stash to any specific branch
+-------------------------------------
+git stash apply stash@{1} branchName
+
+
+to clear the stash
+------------------
+git stash clear
+
+
+to add stickyNote with a commit we use tag
+------------------------------------------
+git tag tagName
+
+to add a tag with any specific commit
+-------------------------------------
+git tag tagName commitHash
+
+
+(We will not perform rebase on master branch 95% times.)
+ TO rebase used in Git to change the base of your current branch from one commit to another. It allows you to reapply commits on top of another base branch, typically used to maintain a linear project history or integrate changes from one branch into another cleanly. 
+ It basically add all changes of the branch without adding any new commit msgs.
+ --------------------------- --------------------------- --------------------------- ---------------------------
+ git rebase master
+
+
+Git reflog is used to shows the history of your commit.it allows you to see the changes that younhave madeto your repo over time.
+--------------------------- --------------------------- --------------------------- ---------------------------
+git reflog
+
+to find specific commit
+-----------------------
+git reflog commitHash
+
+to getBack into spefic commit
+-----------------------------
+git reset --hard commit Hash
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+

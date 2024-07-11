@@ -1,3 +1,5 @@
+https://github.com/sandeep0231/js_practice/blob/main/Genp_react_and_typeScript.txt
+
 jwt means stateless, sessions means need to maintain state in database(need to call db user to authorise the user)
 git is a software and github is a online service where git is hosted
 CustomHooks
