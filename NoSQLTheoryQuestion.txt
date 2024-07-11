@@ -45,3 +45,24 @@ their is only single text index per collection.
 
 db.challenges.createIndex({bio:"text",name:"text"})
 db.challenges.find({$text:{$search:"sita"}})
+-----------------------------------------------------------------------------------
+Regex
+=====
+
+1. Case-Insensitive Match:
+To perform a case-insensitive match, use the $options flag with the value "i":
+db.users.find({ username: { $regex: /john/i } })
+
+2. Match Starting with a Pattern:
+To find documents where a field starts with a specific pattern:
+db.products.find({ name: { $regex: /^start/ } })
+
+3. Match Ending with a Pattern:
+To find documents where a field ends with a specific pattern:
+db.products.find({ name: { $regex: /end$/ } })
+
+
+4. Match Anywhere in the Field:
+To find documents where a field contains a pattern anywhere within it:
+db.articles.find({ content: { $regex: /keyword/ } })
+-----------------------------------------------------------------------------------
