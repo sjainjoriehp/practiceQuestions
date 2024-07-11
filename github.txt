@@ -1,7 +1,11 @@
 config
 ------
-git config --global user.name=""
-git config --global user.email=""
+git config --global user.name ""
+git config --global user.email ""
+
+to get log in oneline
+---------------------
+git log --oneline
 
 to rename branch
 ----------------
