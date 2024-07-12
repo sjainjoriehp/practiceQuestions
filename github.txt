@@ -87,6 +87,14 @@ to getBack into spefic commit
 git reset --hard commit Hash
 
 
+to get a list of remote url
+---------------------------
+git remote -v
+
+to add remote origin
+--------------------
+git remote add origin url
+
 
 
 

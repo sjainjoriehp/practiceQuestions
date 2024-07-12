@@ -4,6 +4,12 @@ isNaN(false) //false
 
 isNaN(undefined)// true
  
+ console.log("1"+ 2 + 2) // 122 
+
+ console.log(1 + 2 + "2") //32
+
+ console.log("2" > 1) // true
+
  //console.log(7+9 +"23") //1623
  
  //console.log(2 + '2' - '2');   // 20
