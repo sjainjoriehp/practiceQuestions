@@ -819,8 +819,25 @@ quickSort(arr, 0, N - 1);
 console.log("Sorted array:");
 console.log(arr.join(" "));
 ------------------------------------------------------------------------------------------------------
+how to find max and MIn of an array
+-----------------------------------
+let arr=[213,213,342,453,-312,-10,11]
 
---------------
+
+function abc(arr) {
+    let lg = Number.MIN_VALUE;
+    let sm = Number.MAX_VALUE;
+    for(let i =0; i<=arr.length-1;i++) {
+        
+        if(lg<arr[i]) {
+            lg = arr[i];
+        } else if(sm>arr[i]) {
+            sm = arr[i];
+        }
+    }
+    console.log({lg,sm})
+}
+abc(arr)
 
 ------------------------------------------------------------------------------------------------------
 
